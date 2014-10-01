@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Hotchkiss",
+    "description": "Application name that is displayed in the Web Store"
+  },
+  "appDesc": {
+    "message": "To the page of crispy On the next shortcut. Readings support.",
+    "description": "Detailed description of the application that is displayed in the Web Store"
+  }
+}

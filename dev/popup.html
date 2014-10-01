@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html ng-app="hk" ng-csp>
+<head>
+<meta charset="UTF-8">
+<style>
+.body {
+  width: 344px;
+  margin: 0;
+  font: 13px/ 1.5 "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", Meiryo, Verdana, Arial, sans-serif;
+  color: #2b2b2b;
+  border-width: 3px 0 3px;
+  border-style: solid;
+  border-color: rgba(255,171,109, .8);
+}
+
+.app- {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.app-list {
+  position: relative;
+}
+
+.app-a:before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 4px;
+  left: 8px;
+  top: 18.5px;
+  background: rgba(255,171,109, .8);
+  border-radius: 50%;
+}
+
+.app-list-empty {
+  min-height: 27px;
+}
+
+/*.app-list:nth-child(n+2) {*/
+  /*border-top: 1px solid rgba(255,171,109, .34);*/
+/*}*/
+
+.app-a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  padding: 1em 1.5em;
+  cursor: pointer;
+}
+
+.app-list {
+  overflow: hidden;
+}
+
+.app-a:hover {
+  transition: background .08s ease-in, color .16s ease-in;
+  background: rgba(255,171,109, .08);
+  color: rgba(255,109,120, .8);
+}
+
+.app-a:hover:before {
+  transition: .08s ease-in;
+  opacity: 0;
+}
+
+.app-aside {
+  font-size: .72rem;
+  margin-top: .5em;
+  text-align: right;
+  opacity: .6;
+}
+
+.app-title {
+  line-height: 1.35;
+  letter-spacing: .25px
+}
+
+.app-favicon {
+  position: relative;
+  top: 1px;
+  max-height: .72rem;
+  max-width: .72rem;
+  -webkit-filter: grayscale(.34);
+}
+
+.app-split {
+  width: 1px;
+  border-left: 1px solid #eef;
+  margin: 0 5px;
+}
+
+.app-url,
+.app-delete {
+  color: #778 !important;
+  letter-spacing: -.05px
+}
+
+.app-delete {
+  display: inline-block;
+  position: relative;
+  top: 1.5px;
+  height: .72rem;
+  width: .72rem;
+}
+
+.app-delete:hover .i-delete-component {
+  transition: .16s ease-in;
+  background: rgba(255,109,120, 1);
+}
+
+.i-delete-component {
+  width: .72rem;
+  height: 2px;
+  border: 1px;
+  border-radius: 2px;
+  position: absolute;
+  background: #778;
+  top: calc(50% - 1px);
+}
+
+.i-delete-component:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.i-delete-component:nth-child(2) {
+  transform: rotate(-45deg);
+}
+
+.app-deleted {
+  transition: .34s ease-in .21s;
+  height: 0 !important;
+  position: relative;
+}
+
+.app-deleted .app-show {
+  transition: opacity .13s ease-in .6s;
+  opacity: 1;
+}
+
+.app-deleted .app-hide {
+  transition: opacity .13s ease-in;
+  opacity: 0;
+}
+/*
+.app-cancel {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 100%;
+  padding: .3em;
+  background: rgba(255,171,109, .8);
+  text-align: center;
+  font-size: .72rem;
+}
+
+.i-undo {
+  display: inline-block;
+}*/
+
+.app-empty {
+  opacity: 0;
+  width: 100%;
+  text-align: center;
+  padding: .3em;
+  position: absolute;
+}
+
+.app-empty-msg {
+  transition: .16s ease-in .6s;
+  opacity: 1;
+}
+</style>
+</head>
+<body class="body">
+
+<ul class="app-" ng-class="{'app-list-empty': !pagea.length || pagea.length == deleteIdxs.length}" ng-controller="HkCtrl">
+  <li class="app-list" ng-class="{'app-deleted': removalIdxs.indexOf($index) > -1}" ng-repeat="page in pages">
+    <hk-list></hk-list>
+  </li>
+  <li class="app-empty" ng-class="{'app-empty-msg': !pages.length || pages.length == removalIdxs.length}">留めたページが空です。</li>
+</ul>
+
+<script src="js/lib/angular.min.js"></script>
+<script src="js/a.ng.js"></script>
